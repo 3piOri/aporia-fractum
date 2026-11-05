@@ -91,6 +91,9 @@
             opacity: 1 !important;
             visibility: visible !important;
         }
+        .artwork-card {
+            scroll-margin-top: 6rem;
+        }
     </style>
 </head>
 <body class="relative min-h-screen text-navy antialiased">
@@ -228,7 +231,7 @@
                         Estudios detallados y reinterpretaciones de fachadas históricas, casonas y elementos estructurales icónicos con perspectiva técnica y textura artesanal.
                     </p>
                 </div>
-                <button onclick="filterGallery('arquitectura')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                <button onclick="filterGallery('arquitectura', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
                     Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
             </div>
@@ -244,7 +247,7 @@
                         Obras figurativas enfocadas en la mirada, volumen y emotividad. Captura delicada utilizando luces y sombras mediante carboncillo, gis y lápices.
                     </p>
                 </div>
-                <button onclick="filterGallery('retrato')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                <button onclick="filterGallery('retrato', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
                     Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
             </div>
@@ -260,7 +263,7 @@
                         Pequeñas obras de arte utilitario ilustradas individualmente a mano en papel de gramaje grueso con detalles en tinta, acuarela y finas borlas.
                     </p>
                 </div>
-                <button onclick="filterGallery('separadores')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                <button onclick="filterGallery('separadores', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
                     Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
             </div>
@@ -276,7 +279,7 @@
                         Bitácoras de encuadernación manual con portadas intervenidas originalmente con pintura acrílica y técnica mixta. Piezas irrepetibles.
                     </p>
                 </div>
-                <button onclick="filterGallery('libretas')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                <button onclick="filterGallery('libretas', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
                     Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
             </div>
@@ -292,7 +295,7 @@
                         Obra plástica elaborada con diversas técnicas.
                     </p>
                 </div>
-                <button onclick="filterGallery('libretas')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                <button onclick="filterGallery('naturaleza', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
                     Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
             </div>
@@ -431,7 +434,7 @@
                 </div>
 
                 <!-- Item 6: Naturaleza Muerta / Lápices de Color -->
-                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="Naturaleza muerta">
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="naturaleza">
                     <div class="relative overflow-hidden h-72">
                         <img src="acrilico.jfif" alt="Casona Yucateca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Naturaleza Muerta</span>
@@ -568,9 +571,10 @@
         });
 
         // Filter Gallery Items
-        function filterGallery(category) {
+        function filterGallery(category, shouldScroll = false) {
             const cards = document.querySelectorAll('.artwork-card');
             const buttons = document.querySelectorAll('.filter-btn');
+            let firstMatchingCard = null;
 
             // Toggle active state on buttons
             buttons.forEach(btn => {
@@ -585,13 +589,20 @@
 
             // Filter cards
             cards.forEach(card => {
-                const categories = card.getAttribute('data-category');
+                const categories = card.getAttribute('data-category').split(/\s+/);
                 if (category === 'all' || categories.includes(category)) {
                     card.style.display = 'block';
+                    if (category !== 'all' && !firstMatchingCard) {
+                        firstMatchingCard = card;
+                    }
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            if (shouldScroll && firstMatchingCard) {
+                firstMatchingCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         // Modal Handler
