@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aporia Fractum | Arte, Dibujo e Ilustración por Dilean — Mérida, Yucatán</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0A1931',      /* Azul Marino Oscuro */
+                        wine: '#722F37',      /* Vino */
+                        olive: '#4B5320',     /* Verde Militar */
+                        lightgray: '#D3D3D3', /* Gris Claro */
+                        cream: '#FAF8F5',     /* Fondo Papel Arches */
+                        parchment: '#F3EFEA'  /* Contenedores Suaves */
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #0A1931;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-cinzel {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.08em;
+        }
+
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Subtle paper texture overlay */
+        .paper-texture {
+            background-image: radial-gradient(#0A1931 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+            opacity: 0.03;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #722F37;
+            border-radius: 4px;
+        }
+
+        /* Delicate line art elements */
+        .delicate-border {
+            border: 1px solid rgba(114, 47, 55, 0.25);
+        }
+
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(114, 47, 55, 0.06) 0%, transparent 70%);
+        }
+
+        .gold-subtle-glow {
+            box-shadow: 0 10px 30px -10px rgba(10, 25, 49, 0.15);
+        }
+
+        /* Modal transitions */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-navy antialiased">
+
+    <!-- Texture layer -->
+    <div class="fixed inset-0 paper-texture pointer-events-none z-50"></div>
+
+    <!-- Navigation -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-cream/90 backdrop-blur-md border-b border-wine/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium">
+                <a href="#inicio" class="hover:text-wine transition-colors py-1">Inicio</a>
+                <a href="#artista" class="hover:text-wine transition-colors py-1">La Artista</a>
+                <a href="#productos" class="hover:text-wine transition-colors py-1">Productos</a>
+                <a href="#galeria" class="hover:text-wine transition-colors py-1">Colección</a>
+                <a href="#tecnicas" class="hover:text-wine transition-colors py-1">Técnicas</a>
+                <a href="#contacto" class="hover:text-wine transition-colors py-1">Contacto</a>
+            </nav>
+
+            <!-- Instagram Header Icon & Mobile menu button -->
+            <div class="flex items-center space-x-4">
+                <a href="https://www.instagram.com/aporia__fractum?exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" 
+                   class="text-navy hover:text-wine transition-colors p-2 text-lg" title="Síguenos en Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <button id="menu-btn" class="md:hidden text-navy hover:text-wine focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-wine/10 px-6 pt-2 pb-6 space-y-3 text-center text-xs tracking-widest uppercase font-medium">
+            <a href="#inicio" class="block py-2 hover:text-wine">Inicio</a>
+            <a href="#artista" class="block py-2 hover:text-wine">La Artista</a>
+            <a href="#productos" class="block py-2 hover:text-wine">Productos</a>
+            <a href="#galeria" class="block py-2 hover:text-wine">Colección</a>
+            <a href="#tecnicas" class="block py-2 hover:text-wine">Técnicas</a>
+            <a href="#contacto" class="block py-2 hover:text-wine">Contacto</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-28 pb-20 md:pt-36 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden hero-glow">
+        <img src="AF.jpeg" alt="Logo de Aporia Fractum" class="w-64 h-64 sm:w-80 sm:h-80 mb-8 object-contain">
+
+        <h2 class="text-xs uppercase tracking-[0.4em] text-olive font-medium mb-3">Estudio de Arte Tradicional</h2>
+        <p class="text-sm sm:text-base md:text-lg font-cormorant italic text-navy/80 max-w-2xl mx-auto mb-8 leading-relaxed">
+            "Donde la paradoja visual trasciende la materia. Dibujos, pinturas y piezas ilustradas a mano creadas en la calidez histórica de Mérida, Yucatán."
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+            <a href="#galeria" class="w-full sm:w-auto px-8 py-3.5 bg-navy text-cream text-xs uppercase tracking-[0.25em] font-medium rounded hover:bg-wine transition-all duration-300 shadow-md">
+                Explorar Obras
+            </a>
+            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quisiera%20consultar%20sobre%20sus%20obras%20disponibles" target="_blank" rel="noopener" class="w-full sm:w-auto px-8 py-3.5 border border-wine text-wine text-xs uppercase tracking-[0.25em] font-medium rounded hover:bg-wine hover:text-cream transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Encargar por WhatsApp
+            </a>
+        </div>
+
+    </section>
+
+    <!-- SOBRE LA ARTISTA -->
+    <section id="artista" class="py-20 bg-parchment/60 border-y border-wine/10 relative">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            
+            <!-- Visual / Portrait Framing -->
+            <div class="md:col-span-5 relative">
+                <div class="relative mx-auto max-w-sm rounded-t-full border border-wine/30 p-3 bg-cream shadow-xl">
+                    <img src="dil.jpg" 
+                         alt="Dilean - Artista Plástica" 
+                         class="w-full h-96 object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute -bottom-4 -right-4 bg-navy text-cream px-4 py-2 text-xs font-cinzel tracking-widest border border-wine">
+                        DILEAN
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artist Biography Text -->
+            <div class="md:col-span-7 space-y-6 text-navy">
+                <div class="flex items-center space-x-3">
+                    <span class="h-px w-8 bg-wine"></span>
+                    <span class="text-xs uppercase tracking-[0.3em] text-wine font-medium">Sobre la Creadora</span>
+                </div>
+                
+                <h2 class="text-3xl sm:text-4xl font-cinzel text-navy">
+                    El Arte de Dilean
+                </h2>
+                
+                <p class="font-cormorant text-lg sm:text-xl italic text-navy/90 leading-relaxed">
+                    «Aporia Fractum representa el punto de fractura donde la lógica racional encuentra el misticismo del trazo artesanal.»
+                </p>
+
+                <p class="text-sm leading-relaxed text-navy/80 font-sans">
+                    Residiendo y trabajando en **Mérida, Yucatán**, Dilean combina la precisión estética de la arquitectura colonial e histórica con el estudio expresivo del rostro humano y la naturaleza. Cada lienzo, cuaderno artesanal y separador de libros es concebido como una pieza única impregnada de técnica clásica.
+                </p>
+
+                <p class="text-sm leading-relaxed text-navy/80 font-sans">
+                    Dominando el carboncillo denso, la fluidez del acrílico y la acuarela, la delicadeza del gis pastel y la rigurosidad de la tinta fina, su obra busca llevar la experiencia artística de la galería directamente al objeto cotidiano.
+                </p>
+
+                <!-- Key Attributes -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-wine/15 text-xs tracking-wider">
+                    <div>
+                        <span class="block text-wine font-semibold uppercase mb-1">Ubicación Estudio</span>
+                        <span class="text-navy/70">Mérida, Yucatán, México</span>
+                    </div>
+                    <div>
+                        <span class="block text-wine font-semibold uppercase mb-1">Especialidad</span>
+                        <span class="text-navy/70">Dibujo, Ilustración & Cuadernos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATEGORIES -->
+    <section id="productos" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-xs uppercase tracking-[0.3em] text-olive font-semibold block mb-2">Colección por Formato</span>
+            <h2 class="text-3xl sm:text-4xl font-cinzel text-navy">Apartados de Productos</h2>
+            <div class="w-16 h-px bg-wine mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product 1: Arquitectura -->
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl text-navy mb-3">Arquitectura</h3>
+                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                        Estudios detallados y reinterpretaciones de fachadas históricas, casonas y elementos estructurales icónicos con perspectiva técnica y textura artesanal.
+                    </p>
+                </div>
+                <button onclick="filterGallery('arquitectura')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- Product 2: Retrato -->
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
+                        <i class="fa-solid fa-user-ninja"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl text-navy mb-3">Retrato</h3>
+                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                        Obras figurativas enfocadas en la mirada, volumen y emotividad. Captura delicada utilizando luces y sombras mediante carboncillo, gis y lápices.
+                    </p>
+                </div>
+                <button onclick="filterGallery('retrato')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- Product 3: Separadores de Libros -->
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl text-navy mb-3">Separadores</h3>
+                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                        Pequeñas obras de arte utilitario ilustradas individualmente a mano en papel de gramaje grueso con detalles en tinta, acuarela y finas borlas.
+                    </p>
+                </div>
+                <button onclick="filterGallery('separadores')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- Product 4: Libretas Artesanales -->
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl text-navy mb-3">Libretas Artesanales</h3>
+                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                        Bitácoras de encuadernación manual con portadas intervenidas originalmente con pintura acrílica y técnica mixta. Piezas irrepetibles.
+                    </p>
+                </div>
+                <button onclick="filterGallery('libretas')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+                        <!-- Product 5: Naturaleza Muerta -->
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
+                        <i class="fa-solid fa-wine-glass"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl text-navy mb-3">Naturaleza Muerta</h3>
+                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                        Obra plástica elaborada con diversas técnicas.
+                    </p>
+                </div>
+                <button onclick="filterGallery('libretas')" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY & TECHNIQUES FILTER SECTION -->
+    <section id="galeria" class="py-24 bg-parchment/40 border-t border-wine/10">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-olive font-semibold block mb-2" id="tecnicas">Exploración Artística</span>
+                <h2 class="text-3xl sm:text-5xl font-cinzel text-navy">Galería de Obras</h2>
+                <p class="text-xs sm:text-sm text-navy/70 mt-3 font-sans max-w-xl mx-auto">
+                    Filtra la colección por técnica plástica o categoría de producto. Cada pieza está disponible para adquisición directa con la artista.
+                </p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 text-xs uppercase tracking-wider">
+                <button onclick="filterGallery('all')" class="filter-btn active-tab px-4 py-2 rounded-full border border-wine bg-wine text-cream transition-all" data-filter="all">Todas</button>
+                <button onclick="filterGallery('carboncillo')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="carboncillo">Carboncillo</button>
+                <button onclick="filterGallery('tinta')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="tinta">Tinta</button>
+                <button onclick="filterGallery('lapices')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="lapices">Lápices de Color</button>
+                <button onclick="filterGallery('gis')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="gis">Gis / Pastel</button>
+                <button onclick="filterGallery('acuarela')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="acuarela">Acuarela</button>
+                <button onclick="filterGallery('acrilico')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="acrilico">Acrílico</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Item 1: Arquitectura / Lápiz -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="arquitectura tinta">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="arq.jfif" alt="Fachada Colonial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Arquitectura</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Fachada Montejo</h3>
+                            <span class="text-xs text-wine font-medium">Lápiz</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Estudio a lápiz de la arquitectura neoclásica con achurados de alta densidad sobre papel de algodón.</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Fachada Montejo', 'Arquitectura', 'Tinta Fina sobre papel 300g', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80', 'Estudio detallado de molduras y proporciones coloniales barrocas de Mérida.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20estoy%20interesado%20en%20adquirir%20la%20obra%20%22Fachada%20Montejo%22%20(Tinta)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Retrato / Carboncillo -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="retrato carboncillo">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="retcarb.jfif" alt="Retrato Melancolía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Retrato</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Penumbra y Mirada</h3>
+                            <span class="text-xs text-wine font-medium">Carboncillo</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Exploración de chiaroscuro y textura de piel utilizando carbón vegetal sobre tonalidad gris neutro.</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Penumbra y Mirada', 'Retrato', 'Carboncillo y difumino', 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80', 'Captura de iluminación dramática enfocada en la expresión sutil del rostro.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20estoy%20interesado%20en%20adquirir%20la%20obra%20%22Penumbra%20y%20Mirada%22%20(Carboncillo)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Separadores / Acuarela -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="separadores acuarela tinta">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="sep.jfif" alt="Separador Botánico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Separadores</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Flora Botánica</h3>
+                            <span class="text-xs text-wine font-medium">Acuarela & Tinta</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Pieza utilitaria única a mano con pigmentos minerales y remate de hilo artesanal verde militar.</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Flora Botánica', 'Separador de Libro', 'Acuarela y tinta dorada', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80', 'Separador miniatura ilustrado a mano con protección de sellador mate.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quiero%20encargar%20un%20%22Separador%20Flora%20Bot%C3%A1nica%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Libretas / Acrílico -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="libretas acrilico">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80" alt="Libreta Constelación" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Libretas</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Bitácora Ósmosis</h3>
+                            <span class="text-xs text-wine font-medium">Acrílico sobre Tapa</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Encuadernación copta hecha a mano. Portada pintada en acrílico tono azul marino y vino con hoja de oro.</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Bitácora Ósmosis', 'Libreta Artesanal', 'Acrílico y Hoja de Oro', 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80', 'Cuaderno de 120 páginas de papel de bambú ideal para técnicas mixtas.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20interesa%20la%20%22Bit%C3%A1cora%20%C3%93smosis%22%20(Libreta)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Retrato / Gis & Pastel -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="retrato gis lapices">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="retrato.jfif" alt="Retrato Gis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Retrato</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Luz Velada</h3>
+                            <span class="text-xs text-wine font-medium">Gis Pastel & Lápiz</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Estudio de tez suave y gradientes orgánicos mezclando gises secos y lápices de color terrosos.</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Luz Velada', 'Retrato', 'Gis Pastel sobre papel Canson', 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80', 'Retrato conceptual con acentos en pastel suave y fijador fianza.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quiero%20consultar%20por%20la%20obra%20%22Luz%20Velada%22%20(Gis)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6: Naturaleza Muerta / Lápices de Color -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="Naturaleza muerta">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="acrilico.jfif" alt="Casona Yucateca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Naturaleza Muerta</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Vestigios</h3>
+                            <span class="text-xs text-wine font-medium">Acrílico</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Interpretación policromática de piano y gato. </p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Vestigio Colonial', 'Arquitectura', 'Lápices policromos', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Capa sobre capa de lápiz graso logrando matices de verde militar y ocre.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20interesa%20la%20obra%20%22Vestigio%20Colonial%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM COMMISSIONS BANNER -->
+    <section class="py-20 bg-navy text-cream relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10 space-y-6">
+            <span class="text-xs uppercase tracking-[0.4em] text-lightgray font-light">Servicio Personalizado</span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-cream">¿Buscas una Obra por Encargo?</h2>
+            <p class="text-sm sm:text-base font-cormorant italic text-lightgray/90 max-w-2xl mx-auto leading-relaxed">
+                Dilean realiza retratos por encargo, estudios arquitectónicos de recintos especiales y ediciones exclusivas de libretas artesanales para eventos o colecciones privadas.
+            </p>
+            <div class="pt-4">
+                <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quisiera%20cotizar%20un%20trabajo%20personalizado" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-wine text-cream text-xs uppercase tracking-[0.25em] font-medium rounded hover:bg-cream hover:text-navy transition-all duration-300">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Cotizar encargo vía WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER -->
+    <footer id="contacto" class="py-16 bg-cream border-t border-wine/20">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-navy mb-12">
+            
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <img src="AF.jpeg" alt="Logo de Aporia Fractum" class="w-24 h-24 object-contain">
+                <p class="text-xs text-navy/70 leading-relaxed font-sans">
+                    Firma artística por Dilean. Obra plástica, ilustración original y encuadernación de autor elaborada en Mérida, Yucatán, México.
+                </p>
+                <div class="flex items-center space-x-3 pt-2">
+                    <a href="https://www.instagram.com/aporia__fractum?exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="w-9 h-9 rounded-full border border-wine/30 flex items-center justify-center text-navy hover:bg-wine hover:text-cream transition-all">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="https://wa.me/529991234567" target="_blank" rel="noopener" class="w-9 h-9 rounded-full border border-wine/30 flex items-center justify-center text-navy hover:bg-wine hover:text-cream transition-all">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-cinzel text-sm font-semibold text-wine tracking-widest uppercase mb-4">Navegación</h4>
+                <ul class="space-y-2 text-xs font-sans text-navy/80">
+                    <li><a href="#inicio" class="hover:text-wine transition-colors">Inicio</a></li>
+                    <li><a href="#artista" class="hover:text-wine transition-colors">Sobre Dilean</a></li>
+                    <li><a href="#productos" class="hover:text-wine transition-colors">Apartados de Productos</a></li>
+                    <li><a href="#galeria" class="hover:text-wine transition-colors">Técnicas y Colección</a></li>
+                    <li><a href="https://wa.me/529991234567" target="_blank" class="hover:text-wine transition-colors">Ventas directas (+52 999 123 4567)</a></li>
+                </ul>
+            </div>
+
+            <!-- Direct Contact -->
+            <div>
+                <h4 class="font-cinzel text-sm font-semibold text-wine tracking-widest uppercase mb-4">Contacto Directo</h4>
+                <p class="text-xs text-navy/80 leading-relaxed mb-3">
+                    <i class="fa-solid fa-location-dot text-wine mr-2"></i> Mérida, Yucatán, México.
+                </p>
+                <p class="text-xs text-navy/80 leading-relaxed mb-3">
+                    <i class="fa-brands fa-whatsapp text-wine mr-2"></i> +52 999 123 4567
+                </p>
+                <p class="text-xs text-navy/80 leading-relaxed">
+                    <i class="fa-brands fa-instagram text-wine mr-2"></i> @aporia__fractum
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-wine/10 text-center text-[11px] text-navy/50 tracking-wider font-sans">
+            © <script>document.write(new Date().getFullYear())</script> Dilean. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20obras" 
+       target="_blank" 
+       rel="noopener"
+       aria-label="Contactar por WhatsApp"
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+    <!-- ARTWORK DETAILS MODAL -->
+    <div id="art-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/70 backdrop-blur-sm opacity-0 invisible">
+        <div class="bg-cream border border-wine/30 rounded-lg max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-navy hover:text-wine p-2 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                <img id="modal-img" src="" alt="" class="w-full h-64 object-cover rounded border border-wine/20">
+                <div class="space-y-3">
+                    <span id="modal-category" class="text-[10px] font-semibold uppercase tracking-widest text-olive bg-parchment px-2 py-1 rounded"></span>
+                    <h3 id="modal-title" class="font-cinzel text-2xl text-navy"></h3>
+                    <p id="modal-technique" class="text-xs font-semibold text-wine"></p>
+                    <p id="modal-desc" class="text-xs text-navy/80 leading-relaxed font-sans"></p>
+                    <div class="pt-4">
+                        <a id="modal-wa-link" href="#" target="_blank" class="w-full py-2.5 bg-wine text-cream text-xs uppercase tracking-wider rounded font-medium flex items-center justify-center gap-2 hover:bg-navy transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i> Consultar Disponibilidad
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filter Gallery Items
+        function filterGallery(category) {
+            const cards = document.querySelectorAll('.artwork-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Toggle active state on buttons
+            buttons.forEach(btn => {
+                if(btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-wine', 'text-cream', 'border-wine');
+                    btn.classList.remove('text-navy', 'border-navy/30');
+                } else {
+                    btn.classList.remove('bg-wine', 'text-cream', 'border-wine');
+                    btn.classList.add('text-navy', 'border-navy/30');
+                }
+            });
+
+            // Filter cards
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-category');
+                if (category === 'all' || categories.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Handler
+        const modal = document.getElementById('art-modal');
+        function openModal(title, category, technique, imgSrc, desc) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-category').innerText = category;
+            document.getElementById('modal-technique').innerText = technique;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-img').src = imgSrc;
+            
+            const waText = encodeURIComponent(`Hola Dilean, me interesa conocer el precio y detalles de la obra "${title}" (${technique}).`);
+            document.getElementById('modal-wa-link').href = `https://wa.me/529991234567?text=${waText}`;
+
+            modal.classList.add('modal-active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('modal-active');
+        }
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
