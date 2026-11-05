@@ -94,6 +94,20 @@
         .artwork-card {
             scroll-margin-top: 6rem;
         }
+        @media (max-width: 767px) {
+            .artwork-card > .p-6 {
+                text-align: center;
+            }
+            .artwork-card > .p-6 > .flex:first-child {
+                flex-direction: column;
+                align-items: center;
+            }
+            .artwork-card > .p-6 > .flex:last-child {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="relative min-h-screen text-navy antialiased">
@@ -103,7 +117,7 @@
 
     <!-- Navigation -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-navy/95 backdrop-blur-md border-b border-lightgray/20">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-center md:justify-between items-center">
             <!-- Desktop Links -->
             <nav class="hidden md:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium text-lightgray">
                 <a href="#inicio" class="hover:text-wine transition-colors py-1">Inicio</a>
@@ -167,8 +181,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Product 1: Arquitectura -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
-                <div>
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
+                <div class="w-full">
                     <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
                         <i class="fa-solid fa-landmark"></i>
                     </div>
@@ -183,8 +197,8 @@
             </div>
 
             <!-- Product 2: Retrato -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
-                <div>
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
+                <div class="w-full">
                     <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
                         <i class="fa-solid fa-user-ninja"></i>
                     </div>
@@ -199,8 +213,8 @@
             </div>
 
             <!-- Product 3: Separadores de Libros -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
-                <div>
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
+                <div class="w-full">
                     <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
                         <i class="fa-solid fa-bookmark"></i>
                     </div>
@@ -215,8 +229,8 @@
             </div>
 
             <!-- Product 4: Libretas Artesanales -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
-                <div>
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
+                <div class="w-full">
                     <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
                         <i class="fa-solid fa-book-open"></i>
                     </div>
@@ -231,8 +245,8 @@
             </div>
 
                         <!-- Product 5: Naturaleza Muerta -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
-                <div>
+            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
+                <div class="w-full">
                     <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
                         <i class="fa-solid fa-wine-glass"></i>
                     </div>
@@ -421,8 +435,8 @@
             </div>
 
             <!-- Artist Biography Text -->
-            <div class="md:col-span-7 space-y-6 text-navy">
-                <div class="flex items-center space-x-3">
+            <div class="md:col-span-7 space-y-6 text-center md:text-left text-navy">
+                <div class="flex items-center justify-center md:justify-start space-x-3">
                     <span class="h-px w-8 bg-wine"></span>
                     <span class="text-xs uppercase tracking-[0.3em] text-wine font-medium">Sobre la Creadora</span>
                 </div>
@@ -476,15 +490,15 @@
 
     <!-- CONTACT & FOOTER -->
     <footer id="contacto" class="py-6 bg-cream border-t border-wine/20">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-navy mb-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left text-navy mb-12">
             
             <!-- Brand Column -->
             <div class="space-y-4">
-                <img src="AF.jpeg" alt="Logo de Aporia Fractum" class="w-24 h-24 object-contain">
+                <img src="AF.jpeg" alt="Logo de Aporia Fractum" class="w-24 h-24 object-contain mx-auto md:mx-0">
                 <p class="text-xs text-navy/70 leading-relaxed font-sans">
                     Firma artística por Dilean. Obra plástica, ilustración original y encuadernación de autor elaborada en Mérida, Yucatán, México.
                 </p>
-                <div class="flex items-center space-x-3 pt-2">
+                <div class="flex items-center justify-center md:justify-start space-x-3 pt-2">
                     <a href="https://www.instagram.com/aporia__fractum?exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="w-9 h-9 rounded-full border border-wine/30 flex items-center justify-center text-navy hover:bg-wine hover:text-cream transition-all">
                         <i class="fa-brands fa-instagram text-sm"></i>
                     </a>
