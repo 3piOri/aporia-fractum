@@ -100,6 +100,75 @@
             box-shadow: 0 10px 30px -10px rgba(10, 25, 49, 0.15);
         }
 
+                /* 3D Carousel (icon-cards) Styling */
+        .icon-cards {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .icon-cards__content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: translateZ(-300px);
+            animation: rotate 20s infinite linear;
+        }
+
+        .icon-cards__item {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 280px;
+            height: 340px;
+            margin-left: -140px;
+            border-radius: 12px;
+            background: #FAF8F5;
+            border: 1px solid rgba(114, 47, 55, 0.25);
+            box-shadow: 0 15px 35px rgba(10, 25, 49, 0.12);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            backface-visibility: hidden;
+        }
+
+        .icon-cards__item:hover {
+            border-color: #722F37;
+            box-shadow: 0 20px 40px rgba(114, 47, 55, 0.25);
+        }
+
+        /* 5-Item 3D Rotation Positioning (90 deg intervals, 320px translateZ) */
+        .icon-cards__item:nth-child(1) {
+            transform: rotateY(0deg) translateZ(360px);
+        }
+        .icon-cards__item:nth-child(2) {
+            transform: rotateY(72deg) translateZ(360px);
+        }
+        .icon-cards__item:nth-child(3) {
+            transform: rotateY(144deg) translateZ(360px);
+        }
+        .icon-cards__item:nth-child(4) {
+            transform: rotateY(216deg) translateZ(360px);
+        }
+        .icon-cards__item:nth-child(5) {
+            transform: rotateY(288deg) translateZ(360px);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translateZ(-320px) rotateY(0deg);
+            }
+            100% {
+                transform: translateZ(-320px) rotateY(-360deg);
+            }
+        }
+
+        /* Checkbox toggle controls rotation pause */
+        #toggle-animation:not(:checked) ~ .icon-cards .icon-cards__content {
+            animation-play-state: paused;
+        }
+
         /* Modal transitions */
         .modal {
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -188,94 +257,109 @@
 
     </section>
 
-    <!-- PRODUCT CATEGORIES -->
-    <section id="productos" class="py-6 px-6 max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-10">
+    <!-- PRODUCT CATEGORIES 3D CAROUSEL -->
+    <section id="productos" class="py-24 px-6 max-w-7xl mx-auto overflow-hidden">
+        <div class="text-center max-w-2xl mx-auto mb-12">
             <span class="text-xs uppercase tracking-[0.3em] text-olive font-semibold block mb-2">Colección por Formato</span>
             <h2 class="text-3xl sm:text-4xl font-cinzel text-navy">Apartados de Productos</h2>
             <div class="w-16 h-px bg-wine mx-auto mt-4"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Product 1: Arquitectura -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
-                <div class="w-full">
-                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
-                        <i class="fa-solid fa-landmark"></i>
-                    </div>
-                    <h3 class="font-cinzel text-xl text-navy mb-3">Arquitectura</h3>
-                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
-                        Estudios detallados y reinterpretaciones de fachadas históricas, casonas y elementos estructurales icónicos con perspectiva técnica y textura artesanal.
-                    </p>
-                </div>
-                <button onclick="filterGallery('arquitectura', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-            </div>
+        <!-- Hidden Checkbox + Label Control for 3D Carousel Animation -->
+        <input class="hidden" id="toggle-animation" type="checkbox" checked />
 
-            <!-- Product 2: Retrato -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
-                <div class="w-full">
-                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
-                        <i class="fa-solid fa-user-ninja"></i>
+        <figure class="icon-cards mt-4">
+            <div class="icon-cards__content">
+                
+                <!-- Product 1: Arquitectura -->
+                <div class="icon-cards__item p-6 flex flex-col justify-between cursor-pointer" data-gallery-category="arquitectura">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl text-navy mb-3">Arquitectura</h3>
+                        <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                            Estudios detallados y reinterpretaciones de fachadas históricas, casonas y elementos estructurales icónicos con perspectiva técnica y textura artesanal.
+                        </p>
                     </div>
-                    <h3 class="font-cinzel text-xl text-navy mb-3">Retrato</h3>
-                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
-                        Obras figurativas enfocadas en la mirada, volumen y emotividad. Captura delicada utilizando luces y sombras mediante carboncillo, gis y lápices.
-                    </p>
+                    <button class="text-xs uppercase tracking-widest text-wine font-semibold hover:translate-x-1 transition-transform flex items-center gap-2">
+                        Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
                 </div>
-                <button onclick="filterGallery('retrato', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-            </div>
 
-            <!-- Product 3: Separadores de Libros -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
-                <div class="w-full">
-                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
-                        <i class="fa-solid fa-bookmark"></i>
+                <!-- Product 2: Retrato -->
+                <div class="icon-cards__item p-6 flex flex-col justify-between cursor-pointer" data-gallery-category="retrato">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6">
+                            <i class="fa-solid fa-user-ninja"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl text-navy mb-3">Retrato</h3>
+                        <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                            Obras figurativas enfocadas en la mirada, volumen y emotividad. Captura delicada utilizando luces y sombras mediante carboncillo, gis y lápices.
+                        </p>
                     </div>
-                    <h3 class="font-cinzel text-xl text-navy mb-3">Separadores</h3>
-                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
-                        Pequeñas obras de arte utilitario ilustradas individualmente a mano en papel de gramaje grueso con detalles en tinta, acuarela y finas borlas.
-                    </p>
+                    <button class="text-xs uppercase tracking-widest text-wine font-semibold hover:translate-x-1 transition-transform flex items-center gap-2">
+                        Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
                 </div>
-                <button onclick="filterGallery('separadores', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-            </div>
 
-            <!-- Product 4: Libretas Artesanales -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
-                <div class="w-full">
-                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
-                        <i class="fa-solid fa-book-open"></i>
+                <!-- Product 3: Separadores de Libros -->
+                <div class="icon-cards__item p-6 flex flex-col justify-between cursor-pointer" data-gallery-category="separadores">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl text-navy mb-3">Separadores</h3>
+                        <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                            Pequeñas obras de arte utilitario ilustradas individualmente a mano en papel de gramaje grueso con detalles en tinta, acuarela y finas borlas.
+                        </p>
                     </div>
-                    <h3 class="font-cinzel text-xl text-navy mb-3">Libretas Artesanales</h3>
-                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
-                        Bitácoras de encuadernación manual con portadas intervenidas originalmente con pintura acrílica y técnica mixta. Piezas irrepetibles.
-                    </p>
+                    <button class="text-xs uppercase tracking-widest text-wine font-semibold hover:translate-x-1 transition-transform flex items-center gap-2">
+                        Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
                 </div>
-                <button onclick="filterGallery('libretas', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-            </div>
 
-                        <!-- Product 5: Naturaleza Muerta -->
-            <div class="bg-cream border border-wine/20 rounded-lg p-6 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left justify-between">
-                <div class="w-full">
-                    <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6 group-hover:bg-wine group-hover:text-cream transition-colors duration-300">
-                        <i class="fa-solid fa-wine-glass"></i>
+                <!-- Product 4: Libretas Artesanales -->
+                <div class="icon-cards__item p-6 flex flex-col justify-between cursor-pointer" data-gallery-category="libretas">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl text-navy mb-3">Libretas Artesanales</h3>
+                        <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                            Bitácoras de encuadernación manual con portadas intervenidas originalmente con pintura acrílica y técnica mixta. Piezas irrepetibles.
+                        </p>
                     </div>
-                    <h3 class="font-cinzel text-xl text-navy mb-3">Naturaleza Muerta</h3>
-                    <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
-                        Obra plástica elaborada con diversas técnicas.
-                    </p>
+                    <button class="text-xs uppercase tracking-widest text-wine font-semibold hover:translate-x-1 transition-transform flex items-center gap-2">
+                        Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
                 </div>
-                <button onclick="filterGallery('naturaleza', true)" class="text-xs uppercase tracking-widest text-wine font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                    Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
+                
+                <!-- Product 5: Naturaleza Muerta y Bodegón-->
+                <div class="icon-cards__item p-6 flex flex-col justify-between cursor-pointer" data-gallery-category="naturaleza">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-wine text-xl mb-6">
+                            <i class="fa-solid fa-wine-glass"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl text-navy mb-3">Naturaleza Muerta y Bodegón</h3>
+                        <p class="text-xs text-navy/75 leading-relaxed font-sans mb-4">
+                            Composiciones clásicas de bodegones, objetos inanimados y arreglos orgánicos en juegos de luz y sombra con técnica mixta.
+                        </p>
+                    </div>
+                    <button class="text-xs uppercase tracking-widest text-wine font-semibold hover:translate-x-1 transition-transform flex items-center gap-2">
+                        Ver piezas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+                
             </div>
+        </figure>
+
+        <!-- Carousel Animation Toggle Control -->
+        <div class="flex items-center justify-center gap-3 mt-6">
+            <label id="animation-control-label" class="flex items-center gap-2.5 cursor-pointer text-xs font-cinzel tracking-widest text-navy uppercase select-none">
+                <input type="checkbox" id="toggle-animation-control" checked onchange="setCarouselAnimation(this.checked)" class="w-4 h-4 accent-wine rounded cursor-pointer">
+                <span>Girar Carrusel 3D</span>
+            </label>
         </div>
     </section>
 
@@ -298,15 +382,17 @@
                 <button onclick="filterGallery('tinta')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="tinta">Tinta</button>
                 <button onclick="filterGallery('lapices')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="lapices">Lápices de Color</button>
                 <button onclick="filterGallery('gis')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="gis">Gis / Pastel</button>
-                <button onclick="filterGallery('acuarela')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="acuarela">Acuarela</button>
-                <button onclick="filterGallery('acrilico')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="acrilico">Acrílico</button>
+                <button onclick="filterGallery('lápiz')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="lápiz">Lápiz</button>
+                <button onclick="filterGallery('libretas')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="libretas">Libretas</button>
+                <button onclick="filterGallery('acrílico')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="acrílico">Acrílico</button>
+                <button onclick="filterGallery('naturaleza')" class="filter-btn px-4 py-2 rounded-full border border-navy/30 hover:border-wine text-navy transition-all" data-filter="naturaleza">Naturaleza muerta / Bodegón</button>
             </div>
 
             <!-- Gallery Grid -->
             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Item 1: Arquitectura / Lápiz -->
-                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="arquitectura tinta">
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="arquitectura lápiz">
                     <div class="relative overflow-hidden h-72">
                         <img src="arq.jfif" alt="Fachada Colonial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Arquitectura</span>
@@ -318,7 +404,7 @@
                         </div>
                         <p class="text-xs text-navy/70 mb-4 line-clamp-2">Estudio a lápiz de la arquitectura neoclásica con achurados de alta densidad sobre papel de algodón.</p>
                         <div class="flex items-center justify-between pt-3 border-t border-wine/10">
-                            <button onclick="openModal('Fachada Montejo', 'Arquitectura', 'Tinta Fina sobre papel 300g', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80', 'Estudio detallado de molduras y proporciones coloniales barrocas de Mérida.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <button onclick="openModal('Fachada Montejo', 'Arquitectura', 'Lápiz sobre papel 300g', 'arq.jfif', 'Estudio detallado de molduras y proporciones coloniales barrocas de Mérida.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
                             <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20estoy%20interesado%20en%20adquirir%20la%20obra%20%22Fachada%20Montejo%22%20(Tinta)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
                             </a>
@@ -339,7 +425,7 @@
                         </div>
                         <p class="text-xs text-navy/70 mb-4 line-clamp-2">Exploración de chiaroscuro y textura de piel utilizando carbón vegetal sobre tonalidad gris neutro.</p>
                         <div class="flex items-center justify-between pt-3 border-t border-wine/10">
-                            <button onclick="openModal('Penumbra y Mirada', 'Retrato', 'Carboncillo y difumino', 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80', 'Captura de iluminación dramática enfocada en la expresión sutil del rostro.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <button onclick="openModal('Penumbra y Mirada', 'Retrato', 'Carboncillo y difumino', 'retcarb.jfif', 'Captura de iluminación dramática enfocada en la expresión sutil del rostro.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
                             <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20estoy%20interesado%20en%20adquirir%20la%20obra%20%22Penumbra%20y%20Mirada%22%20(Carboncillo)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
                             </a>
@@ -347,20 +433,20 @@
                     </div>
                 </div>
 
-                <!-- Item 3: Separadores / Acuarela -->
-                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="separadores acuarela tinta">
+                <!-- Item 3: Separadores / Tintas -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="separadores tinta">
                     <div class="relative overflow-hidden h-72">
-                        <img src="sep.jfif" alt="Separador Botánico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="sep.jfif" alt="Separador existencial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Separadores</span>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-cinzel text-lg font-semibold text-navy">Flora Botánica</h3>
-                            <span class="text-xs text-wine font-medium">Acuarela & Tinta</span>
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Existencia rota</h3>
+                            <span class="text-xs text-wine font-medium">Lápiz & Tinta</span>
                         </div>
                         <p class="text-xs text-navy/70 mb-4 line-clamp-2">Pieza utilitaria única a mano con pigmentos minerales y remate de hilo artesanal verde militar.</p>
                         <div class="flex items-center justify-between pt-3 border-t border-wine/10">
-                            <button onclick="openModal('Flora Botánica', 'Separador de Libro', 'Acuarela y tinta dorada', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80', 'Separador miniatura ilustrado a mano con protección de sellador mate.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <button onclick="openModal('Flora Botánica', 'Separador de Libros', 'Acuarela y tinta dorada', 'sep.jfif', 'Separador miniatura ilustrado a mano con protección de sellador mate.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
                             <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quiero%20encargar%20un%20%22Separador%20Flora%20Bot%C3%A1nica%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
                             </a>
@@ -389,8 +475,8 @@
                     </div>
                 </div>
 
-                <!-- Item 5: Retrato / Gis & Pastel -->
-                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="retrato gis lapices">
+                <!-- Item 5: Retrato / Lápiz de & Pastel -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="retrato lapices">
                     <div class="relative overflow-hidden h-72">
                         <img src="retrato.jfif" alt="Retrato Gis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Retrato</span>
@@ -398,22 +484,22 @@
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="font-cinzel text-lg font-semibold text-navy">Luz Velada</h3>
-                            <span class="text-xs text-wine font-medium">Gis Pastel & Lápiz</span>
+                            <span class="text-xs text-wine font-medium">Lápiz de color</span>
                         </div>
                         <p class="text-xs text-navy/70 mb-4 line-clamp-2">Estudio de tez suave y gradientes orgánicos mezclando gises secos y lápices de color terrosos.</p>
                         <div class="flex items-center justify-between pt-3 border-t border-wine/10">
-                            <button onclick="openModal('Luz Velada', 'Retrato', 'Gis Pastel sobre papel Canson', 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80', 'Retrato conceptual con acentos en pastel suave y fijador fianza.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
-                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quiero%20consultar%20por%20la%20obra%20%22Luz%20Velada%22%20(Gis)" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                            <button onclick="openModal('Luz Velada', 'Retrato', 'Gis Pastel sobre papel Canson', 'retrato.jfif', 'Retrato conceptual con acentos en pastel suave.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20quiero%20consultar%20por%20la%20obra%20%22Luz%20Velada%22%20" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Item 6: Naturaleza Muerta / Lápices de Color -->
-                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="naturaleza">
+                <!-- Item 6: Naturaleza Muerta / Pintura, técnicas variadas -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="naturaleza muerta acrílico">
                     <div class="relative overflow-hidden h-72">
-                        <img src="acrilico.jfif" alt="Casona Yucateca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="acrilico.jfif" alt="Escena Yucateca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Naturaleza Muerta</span>
                     </div>
                     <div class="p-6">
@@ -423,8 +509,29 @@
                         </div>
                         <p class="text-xs text-navy/70 mb-4 line-clamp-2">Interpretación policromática de piano y gato. </p>
                         <div class="flex items-center justify-between pt-3 border-t border-wine/10">
-                            <button onclick="openModal('Vestigio Colonial', 'Arquitectura', 'Lápices policromos', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Capa sobre capa de lápiz graso logrando matices de verde militar y ocre.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
-                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20interesa%20la%20obra%20%22Vestigio%20Colonial%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                            <button onclick="openModal('Vestigios', 'Pintura Acrílica', 'Acrílico', 'acrilico.jfif', 'Pintuas acrílicas sobre lienzo.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20interesa%20la%20obra%20%22Vestigios%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Item 7: Naturaleza Muerta / Gis/Pastel -->
+                <div class="artwork-card bg-cream border border-wine/15 rounded-md overflow-hidden group hover:shadow-xl transition-all duration-300" data-category="naturaleza gis">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="gis.jpeg" alt="Naturaleza Muerta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy/90 text-cream text-[10px] uppercase tracking-widest px-2.5 py-1 rounded">Bodegón</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-cinzel text-lg font-semibold text-navy">Estudio No.3</h3>
+                            <span class="text-xs text-wine font-medium">Gis / pastel</span>
+                        </div>
+                        <p class="text-xs text-navy/70 mb-4 line-clamp-2">Interpretación de objetos cotidianos. </p>
+                        <div class="flex items-center justify-between pt-3 border-t border-wine/10">
+                            <button onclick="openModal('Estudio No.3', 'Pastel y gis', 'gis', 'gis.jpeg', 'Pintuas acrílicas sobre lienzo.')" class="text-xs text-navy hover:text-wine font-medium underline">Detalles</button>
+                            <a href="https://wa.me/529991234567?text=Hola%20Dilean,%20me%20interesa%20la%20obra%20%22Estudio%20No.3%22" target="_blank" class="px-3.5 py-1.5 bg-wine text-cream text-[11px] uppercase tracking-wider rounded hover:bg-navy transition-colors flex items-center gap-1.5">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Adquirir
                             </a>
                         </div>
@@ -530,9 +637,9 @@
                 <h4 class="font-cinzel text-sm font-semibold text-wine tracking-widest uppercase mb-4">Navegación</h4>
                 <ul class="space-y-2 text-xs font-sans text-navy/80">
                     <li><a href="#inicio" class="hover:text-wine transition-colors">Inicio</a></li>
-                    <li><a href="#artista" class="hover:text-wine transition-colors">Sobre Dilean</a></li>
                     <li><a href="#productos" class="hover:text-wine transition-colors">Apartados de Productos</a></li>
                     <li><a href="#galeria" class="hover:text-wine transition-colors">Técnicas y Colección</a></li>
+                    <li><a href="#artista" class="hover:text-wine transition-colors">Sobre Dilean</a></li>
                     <li><a href="https://wa.me/529991234567" target="_blank" class="hover:text-wine transition-colors">Ventas directas (+52 999 123 4567)</a></li>
                 </ul>
             </div>
@@ -635,6 +742,31 @@
                 firstMatchingCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
+
+        function setCarouselAnimation(isPlaying) {
+            document.getElementById('toggle-animation').checked = isPlaying;
+            document.getElementById('toggle-animation-control').checked = isPlaying;
+        }
+
+        function selectGalleryCategory(category) {
+            setCarouselAnimation(false);
+            filterGallery(category, true);
+        }
+
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+
+            if (target.closest('#animation-control-label')) return;
+
+            const productCard = target.closest('.icon-cards__item');
+            if (productCard) {
+                selectGalleryCategory(productCard.dataset.galleryCategory);
+                return;
+            }
+
+            setCarouselAnimation(true);
+        });
 
         // Modal Handler
         const modal = document.getElementById('art-modal');
